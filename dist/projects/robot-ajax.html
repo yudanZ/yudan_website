@@ -1,0 +1,239 @@
+<div id="custom-content" class="white-popup-block" style="max-width:600px; margin: 20px auto;">
+    <h1 class="test">My Robot Project</h1>
+    <p>Hello, I am an android robot. My name is Mia, You can put your mouse on my head, arms or legs to manupulate me. You can also Click the button to see what will happen. Enjoy!!!</p>
+    <div class="robots">
+		<div class="android">
+            <div class="name">
+                <h2>My name is Mia</h2>
+                <a href="#" class="mybutton mybutton--small mybutton--blue flash" onclick='$(".head").toggleClass("laser");'>Click me</a>
+            </div>
+            <div class="antenna">
+                <div class="left_antenna"></div>
+                <div class="right_antenna"></div>
+            </div> 
+			<div class="head"> 
+				
+			</div> 
+			<div class="upper_body"> 
+				<div class="left_arm"></div> 
+				<div class="torso"></div> 
+				<div class="right_arm"></div> 
+			</div> 
+			<div class="lower_body"> 
+				<div class="left_leg"></div> 
+				<div class="right_leg"></div> 
+			</div> 
+		</div>
+	</div>
+</div>
+
+
+<style>
+
+    .white-popup-block{
+        background:#fff;
+        padding:20px 30px;
+        text-align:left;
+        max-width:650px;
+        margin:40px auto;
+        position:relative
+    }
+
+    h1 {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+    }
+    h2{
+        margin-bottom: 2rem;
+    }
+    p{
+      
+        font-size: 1.3rem;
+     
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .robots {
+
+        border: 1px solid black;
+        background-color: rgb(236, 235, 235);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 30px;
+    }
+
+    .name {
+        text-align: center;
+        font-size: 1.3rem;
+        margin-bottom: 3rem;
+    }
+
+    .head, 
+    .left_arm, 
+    .torso, 
+    .right_arm, 
+    .left_leg, 
+    .right_leg,
+    .left_antenna,
+    .right_antenna {
+        background-color: rgb(151, 181, 245);
+    }
+
+    .antenna{ 
+        width: 200px; 
+        height: 90px; 
+        margin: 0 auto;
+        display: flex; 
+    } 
+    
+    .left_antenna, .right_antenna { 
+        width: 10px; 
+        height: 90px; 
+        border-radius: 10px; 
+        -webkit-border-radius: 10px; 
+        -moz-border-radius: 10px; 
+        -ms-border-radius: 10px; 
+        -o-border-radius: 10px; 
+       
+    } 
+    
+    .left_antenna { 
+        position: relative; 
+        top: 30px; 
+        left: 40px;
+        transform:rotate(-33deg); 
+        -webkit-transform: rotate(-33deg); 
+        -moz-transform: rotate(-33deg); 
+        -ms-transform: rotate(-33deg); 
+        -o-transform: rotate(-33deg);
+        transition: all 0.3s;  
+        
+    }
+    
+    .left_antenna:hover {
+        transform: rotate(0);
+    }
+    
+    .right_antenna { 
+        position: relative; 
+        top: 30px; 
+        left: 120px; 
+        transform: rotate(33deg); 
+        -webkit-transform: rotate(33deg); 
+        -moz-transform: rotate(33deg); 
+        -ms-transform: rotate(33deg); 
+        -o-transform: rotate(33deg); 
+        transition: all 0.3s; 
+    }
+
+    .right_antenna:hover{
+        transform: rotate(0);
+    }
+
+    .head {
+        left: 70px;
+        width: 200px; 
+        margin: 0 auto; 
+        height: 150px;
+        background: radial-gradient(circle, white 15%, transparent 40%),  rgb(151, 181, 245); 
+        background-size: 100px 160px;
+        border-radius: 200px 200px 0 0; 
+        margin-bottom: 10px;
+    } 
+
+    .upper_body { 
+        width: 300px; 
+        height: 150px;
+        display: flex;
+        
+        
+    } 
+
+    .left_arm, .right_arm { 
+        width: 40px; 
+        height: 125px;
+        border-radius: 100px; 
+        transition: transform 1s;
+    } 
+
+    .left_arm { 
+        margin-right: 10px; 
+    } 
+
+    .left_arm:hover {
+        transform: scale(1.4);
+    }
+
+    .right_arm { 
+        margin-left: 10px; 
+
+    } 
+    .right_arm:hover {
+        transform: scale(1.4);
+    }
+
+    .torso { 
+        width: 200px; 
+        height: 200px;
+        border-radius: 0 0 50px 50px; 
+    } 
+
+    .lower_body { 
+        
+        width: 200px; 
+        height: 200px;
+        /* This is another useful property. Hmm what do you think it does?*/
+        display: flex;
+        margin: 0 auto;
+        
+        
+    } 
+
+    .left_leg, .right_leg { 
+        width: 40px; 
+        height: 120px;
+        border-radius: 0 0 100px 100px; 
+        transition: transform 1s;
+    } 
+
+    .left_leg { 
+        margin-top: 10;
+        margin-left: 45px; 
+    } 
+
+    .left_leg:hover {
+        -webkit-transform: rotate(20deg);
+        -moz-transform: rotate(20deg);
+        -o-transform: rotate(20deg);
+        -ms-transform: rotate(20deg);
+        transform: rotate(20deg);
+    }
+
+    .right_leg { 
+        margin-top: 10;
+        margin-left: 40px; 
+    }
+
+    .right_leg:hover {
+        transform: rotate(-20deg);
+    }
+
+  
+
+    .laser {
+        animation: blink .5s infinite;
+    }
+
+
+    @keyframes blink {
+        
+        50%{
+
+            background: radial-gradient(circle, red 15%, transparent 40%), rgb(151, 181, 245);
+            
+        }
+    }
+
+
+</style>

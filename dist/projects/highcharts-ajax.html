@@ -1,0 +1,215 @@
+<div id="custom-content" class="white-popup-block" style="max-width:40vw; margin: 20px auto;">
+    <h1 class="test">Using highcharts example</h1>
+    <p>This project gives an example bying using highcharts to creat our own charts! In order to use highcharts, you need to include <em>jquery.js</em> and <em>highcharts.js</em>. The first chart is a line chart which illustrates six consecutive days of temperature in Zurich.  </p>
+    <div class="chart-container">
+        <div id="container1"  class="container1">
+
+        </div>
+        <div id="container2"  class="container2">
+    
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            async function getWeatherAW(woeid){
+                try{
+                    const result = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`);
+
+                    const data = await result.json();
+                    //const tomorrow = data.consolidated_weather[1];
+                    //console.log(`Temperatures tomorrow in ${data.title} stay between ${tomorrow.min_temp} and ${tomorrow.max_temp}.`);
+                    return data;
+                    //console.log(data);
+                }catch(error){
+                    console.log(error);
+                }
+                
+                
+            }
+
+            let dataZurich;
+            let xAxisCategoriesAll = [];
+            let yAxisCategoriesAll = [];
+            getWeatherAW(784794).then(data => {
+                dataZurich = data.consolidated_weather;
+                //console.log(dataZurich);
+
+                $.each(dataZurich, function( key, value){
+                    xAxisCategoriesAll.push(value.applicable_date);
+                    let temp = value.the_temp;
+                    //console.log(typeof(temp));
+                    temp = temp.toString().match(/^-?\d+(?:\.\d{0,2})?/)[0];
+                    //console.log(temp);
+                    yAxisCategoriesAll.push(parseFloat(temp));
+                });
+                //console.log(yAxisCategoriesAll);
+
+                
+                
+                $("#container1").highcharts({
+                    chart: {
+                        type: "line"
+                    },
+                    title: {
+                        text: "Recent 6 days weather in Zurich"
+                    },
+                    subtitle: {
+                        text: "Source: metaweather.com"
+                    },
+                    xAxis: {
+                        categories: xAxisCategoriesAll
+                    },
+                    yAxis: {
+                        title: {
+                            text: "Temperature (C)"
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: false
+                        }
+                    },
+                    series: [{
+                        name: "Zurich",
+                        data:  yAxisCategoriesAll
+                    }]
+                });
+            });
+
+            //Highcharts map
+            // Initiate the chart
+           
+            //var data = Highcharts.geojson(Highcharts.maps['countries/cn/custom/cn-all-sar-taiwan']);
+            //console.log(data);
+            /*
+            $.each(data, function (i) {
+                this.drilldown = this.properties['hc-key'];
+                this.value = i; // Non-random bogus data
+            });
+            console.log(data)
+            */
+            var data = [
+                ['tw', 0],
+                ['cn-sh', 23019148],
+                ['cn-zj', 54426891],
+                ['cn-3681', 552503],
+                ['cn-fj', 36894216],
+                ['cn-gd', 104303132],
+                ['cn-hk', 7061200],
+                ['cn-yn', 45966239],
+                ['cn-xz', 21813334],
+                ['cn-nx', 6176900],
+                ['cn-sa', 37327378],
+                ['cn-ah', 59500510],
+                ['cn-hu', 57237740],
+                ['cn-cq', 28846170],
+                ['cn-hn', 65683722],
+                ['cn-bj', 19612368],
+                ['cn-hb', 71854202],
+                ['cn-sd', 100063065],
+                ['cn-tj', 12938224],
+                ['cn-ha', 9261518],
+                ['cn-jl', 27462297],
+                ['cn-qh', 5626722],
+                ['cn-xj', 21813334],
+                ['cn-nm', 24706321],
+                ['cn-hl', 38312224],
+                ['cn-sc', 80418200],
+                ['cn-gz', 35806468],
+                ['cn-gx', 46026629],
+                ['cn-ln', 43746323],
+                ['cn-js', 78659903],
+                ['cn-gs', 25575254],
+                ['cn-sx', 37022111],
+                ['cn-he', 94023567],
+                ['cn-jx', 44567475]
+            ];
+
+            // Create the chart
+            $('#container2').highcharts('Map', {
+                chart: {
+                    map: 'countries/cn/custom/cn-all-sar-taiwan',
+                    height: 800   
+                },
+
+                title: {
+                    text: 'Chinese Provinces by Population'
+                },
+
+                subtitle: {
+                    text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/cn/custom/cn-all-sar-taiwan.js">China with Hong Kong, Macau, and Taiwan</a>'
+                },
+
+                mapNavigation: {
+                    enabled: true,
+                    buttonOptions: {
+                        verticalAlign: 'bottom'
+                    }
+                },
+
+                colorAxis: {
+                    min: 0
+                },
+
+                series: [{
+                    data: data,
+                    name: 'Total Population',
+                    states: {
+                        hover: {
+                            color: '#BADA55'
+                        }
+                    },
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }]
+            });
+
+        });
+    </script>
+</div>
+
+<style>
+
+    .white-popup-block{
+        background:#fff;
+        padding:20px 30px;
+        text-align:left;
+        max-width:60vw;
+        margin:40px auto;
+        position:relative
+    }
+    h1 {
+        text-align: center;
+        font-family: "Raleway", sans-serif;
+        margin-bottom: 2.5rem;
+    }
+   
+    p{
+      
+        font-size: 1.3rem;
+     
+        font-family: "Raleway", sans-serif;
+    }
+
+    .chart-container {
+        padding-top: 30px;
+    }
+
+    .container1 {
+        margin-bottom: 5rem;
+    }
+
+
+</style>
+
+
+
+  

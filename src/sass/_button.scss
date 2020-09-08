@@ -1,0 +1,90 @@
+$color-yellow: #e1a87a;
+
+.mybutton {
+    &,
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        
+        text-decoration: none;
+        display:inline-block;
+        position: relative;
+        
+        border: 1px solid $color-yellow;
+        transition: 0.1s background-color linear, 0.1s color linear;
+
+    }
+    &:hover {
+        background-color: $color-yellow;
+        border-color: $color-yellow;
+        color: #1d1d1d;
+    }
+
+    &--white {
+
+        &,
+        &:link,
+        &:visited {
+            text-transform: uppercase;
+            
+            text-decoration: none;
+            display:inline-block;
+            position: relative;
+            
+            border: 1px solid #fff;
+            transition: 0.1s background-color linear, 0.1s color linear;
+            color: #fff;
+        }
+
+        &:hover {
+            background-color: #fff;
+            border-color: #fff;
+            color: #000;
+        }
+    }
+
+    &--blue {
+
+        &,
+        &:link,
+        &:visited {
+            text-transform: uppercase;
+            
+            text-decoration: none;
+            display:inline-block;
+            position: relative;
+            
+            border: 1px solid rgb(151, 181, 245);
+            transition: 0.1s background-color linear, 0.1s color linear;
+            color:  rgb(151, 181, 245);
+        }
+
+        &:hover {
+            background-color:rgb(151, 181, 245);
+            border-color:rgb(151, 181, 245);
+            color: #000;
+        }
+    }
+
+    &--yellow {
+        color: $color-yellow;
+    }
+
+   
+
+    &--medium {
+        padding: 1.8rem 3.2rem;
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: .10em;
+    }
+
+    &--small {
+
+        padding: 1.4rem 2.8rem;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: .10em;
+    }
+
+}
